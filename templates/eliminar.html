@@ -5,18 +5,19 @@
 
 <br><br>
 <div class="w-full max-w-md mx-auto mt-10 p-6 bg-neutral-primary-soft rounded-base shadow-xs border border-default">
-    <h2 class="text-2xl font-bold mb-6 text-heading text-center">Registro de Alumnos</h2>
+    <h2 class="text-2xl font-bold mb-6 text-heading text-center">Eliminar Alumno</h2>
     
     <form method="POST">
         {{ form.csrf_token }}
         
+        {{ macros.camposNuevos(form.id) }}
         {{ macros.camposNuevos(form.nombre) }}
         {{ macros.camposNuevos(form.apellidos) }}
         {{ macros.camposNuevos(form.email) }}
         {{ macros.camposNuevos(form.telefono) }}
-
+        
         <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 transition-colors">
-            Registrar Alumno
+            Eliminar Alumno
         </button>
         <br><br>
         <button class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 transition-colors">
