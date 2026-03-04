@@ -21,3 +21,23 @@ class UserForm(Form):
         validators.Email(message="El numero solo deben ser 10 digitos")
         
     })
+    
+class MaestrosForm(Form):
+    matricula=IntegerField('matricula')
+    nombre=StringField("nombre", {
+        validators.DataRequired(message="El campo es requerido"),
+        validators.length(min=4, max=10, message="Ingrese un nombre valido")
+    })
+    apellidos=StringField("apellidos", {
+        validators.DataRequired(message="El campo es requerido"),
+
+    })
+    especialidad=StringField("especialidad", {
+        validators.DataRequired(message="El campo es requerido"),
+
+    })
+    email=EmailField("email", {
+        validators.DataRequired(message="El campo es requerido"),
+        validators.Email(message="Ingresa correo valido")
+        
+    })

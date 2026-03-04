@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block container %}
+  <br /><br />
+  <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+    <a href="/maestros/insertar" class="inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-white bg-blue-600 rounded-xl shadow-lg shadow-blue-200 hover:bg-blue-700 hover:-translate-y-0.5 transition-all duration-200">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+      </svg>Añadir Nuevo Maestro
+    </a>
+    <table class="w-full text-sm text-left rtl:text-right text-body">
+      <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
+        <tr>
+          <th scope="col" class="px-6 py-3 font-medium">Matricula</th>
+          <th scope="col" class="px-6 py-3 font-medium">Nombre</th>
+          <th scope="col" class="px-6 py-3 font-medium">Apellidos</th>
+          <th scope="col" class="px-6 py-3 font-medium">Especialidad</th>
+          <th scope="col" class="px-6 py-3 font-medium">Email</th>
+          <th scope="col" class="px-6 py-3 font-medium text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for maes in maestros %}
+          <tr class="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium transition-colors">
+            <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">{{ maes.matricula }}</th>
+            <td class="px-6 py-4">{{ maes.nombre }}</td>
+            <td class="px-6 py-4">{{ maes.apellidos }}</td>
+            <td class="px-6 py-4">{{ maes.especialidad }}</td>
+            <td class="px-6 py-4">{{ maes.email }}</td>
+            <td class="px-6 py-4 text-right">
+              <a href="/maestros/modificar?matricula={{ maes.matricula }}" class="font-medium text-fg-brand hover:underline">Editar</a>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <a href="/maestros/detalles?matricula={{ maes.matricula }}" class="font-medium text-fg-brand hover:underline" style="color: blueviolet;">Detalles</a>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <a href="/maestros/eliminar?matricula={{ maes.matricula }}" class="font-medium text-fg-brand hover:underline" style="color: red;">Eliminar</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

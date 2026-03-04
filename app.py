@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_wtf.csrf import CSRFProtect
 from config import DevelopmentConfig
+from maestros.routes import maestros
 import forms
 from flask_migrate import Migrate
 
@@ -8,6 +9,7 @@ from models import db, Alumnos
 
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
+app.register_blueprint(maestros)
 db.init_app(app)
 migrate = Migrate(app,db)
 csrf = CSRFProtect()
@@ -17,7 +19,6 @@ def page_not_found(e):
     return render_template("404.html"),404
 
 @app.route("/", methods = ['GET', 'POST'])
-@app.route("/index")
 def index():
 		create_form = forms.UserForm(request.form)
 		alumno = Alumnos.query.all()
