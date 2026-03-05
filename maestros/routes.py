@@ -5,11 +5,6 @@ from flask import Flask, render_template, request, redirect, url_for
 from models import Maestros
 from models import db, Maestros
 
-
-@maestros.route("/perfil/<nombre>")
-def perfil(nombre):
-    return f"Perfil de {nombre}"
-
 @maestros.route("/maestros", methods = ['GET','POST'])
 def lista_maestros():
 		create_form = forms.MaestrosForm(request.form)

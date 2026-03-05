@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block container %}
+  <div class="group py-32 relative overflow-x-auto sm:rounded-lg">
+    <div class="relative bg-neutral-primary-soft max-w-xs w-full p-6 border border-default rounded-base shadow-xs">
+      <div class="flex flex-col items-center">
+        <img class="w-24 h-24 mb-6 rounded-full" src="{{url_for('static', filename = 'img/Usuario.png')}}" 
+        alt="Bonnie image" style="width: 100px;"/>
+        
+        <h5 class="mb-0.5 text-xl font-semibold tracking-tight text-heading">Nombre: {{alumno.nombre}} {{alumno.apellidos}}</h5>
+        <h3 class="mb-2 text-2x1 tracking-tight text-gray-900 dark:text-red"> Correo: {{alumno.email}}</h3>
+        <h3 class="mb-2 text-2x1 tracking-tight text-gray-900 dark:text-red"> Telefono: {{alumno.telefono}}</h3>
+        
+        <div class="w-full mt-4 bg-white p-3 rounded-lg border border-gray-200">
+            <h4 class="text-md font-bold text-gray-800 mb-2">Cursos Inscritos:</h4>
+            <ul class="text-sm text-gray-600 text-left list-disc list-inside">
+                {% for curso in alumno.cursos %}
+                    <li>{{ curso.nombre }}</li>
+                {% else %}
+                    <li class="text-gray-400 italic">No está inscrito en ningún curso.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="flex mt-4 md:mt-6 gap-4">
+          <a href="/alumnos" 
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Regresar
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

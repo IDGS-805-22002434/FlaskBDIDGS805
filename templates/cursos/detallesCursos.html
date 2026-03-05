@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block container %}
+<div class="container mx-auto px-4 py-8 max-w-5xl">
+    
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <div>
+            <h1 class="text-3xl font-extrabold text-gray-800">{{ curso.nombre }}</h1>
+            <p class="text-gray-500 mt-1">Lista de estudiantes inscritos y detalles del curso.</p>
+        </div>
+        <a href="{{ url_for('cursos.lista_cursos') }}" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center transition-colors">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Volver a Cursos
+        </a>
+    </div>
+
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-8 flex flex-wrap gap-8 justify-between items-center">
+        <div>
+            <span class="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-1">Profesor Asignado</span>
+            <span class="text-lg font-medium text-gray-800">{{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}</span>
+        </div>
+        <div>
+            <span class="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-1">Clave del Curso</span>
+            <span class="text-lg font-medium text-gray-800">#{{ curso.id }}</span>
+        </div>
+        <div>
+            <span class="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-1">Alumnos</span>
+            <span class="text-sm font-bold text-blue-700 bg-blue-100 px-3 py-1 rounded-full">{{ curso.alumnos|length }} inscritos</span>
+        </div>
+        <div class="w-full mt-2 pt-4 border-t border-gray-100">
+            <span class="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-1">Descripción General</span>
+            <p class="text-gray-600">{{ curso.descripcion }}</p>
+        </div>
+    </div>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-600">
+            <thead class="text-xs text-white uppercase bg-blue-600">
+                <tr>
+                    <th scope="col" class="px-6 py-4 rounded-tl-lg">Matrícula</th>
+                    <th scope="col" class="px-6 py-4">Nombre Completo</th>
+                    <th scope="col" class="px-6 py-4 rounded-tr-lg">Correo Electrónico</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alum in curso.alumnos %}
+                <tr class="odd:bg-white even:bg-gray-50 border-b hover:bg-blue-50 transition-colors">
+                    <td class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap">
+                        {{ alum.id }}
+                    </td>
+                    <td class="px-6 py-4 font-medium">
+                        {{ alum.nombre }} {{ alum.apellidos }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ alum.email }}
+                    </td>
+                </tr>
+                {% else %}
+                <tr class="bg-white">
+                    <td colspan="3" class="px-6 py-10 text-center text-gray-500">
+                      <br>
+                        No hay alumnos inscritos en este curso todavía.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}
